@@ -1,0 +1,9 @@
+# Default initial positions for rv2fr's ros2_control fake system
+
+initial_positions:
+  J1: 0
+  J2: 0
+  J3: 1.57079632679
+  J4: 0
+  J5: 1.57079632679
+  J6: 0

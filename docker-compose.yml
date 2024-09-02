@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+
+  ros2-mitsubishi-novnc:
+    image: ros2-mitsubishi-novnc:latest
+    build: 
+      context: ./novnc
+      dockerfile: Dockerfile
+    container_name: ros2-mitsubishi-novnc
+    networks:
+      demo-ros2:
+        ipv4_address: 172.36.0.3
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    ports:    
+      - "8080:8080"  
+
+  ros2-mitsubishi-moveit:
+    image: ros2-mitsubishi-moveit:latest
+    container_name: ros2-mitsubishi-moveit
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu] 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DISPLAY=172.36.0.3:0.0
+      - ROBOT_IP= # YOUR_ROBOT_IP
+      - ROBOT_UDP_PORT=10000
+      - ROBOT_TCP_PORT=10003
+      - HOST_IP= # YOUR_HOST_IP
+    depends_on:           
+      - ros2-mitsubishi-novnc
+    volumes:
+      - ./src:/root/ros2_ws/src      
+    network_mode: host    
+    stdin_open: true
+    tty: true
+
+networks:
+  demo-ros2:
+    name: demo-ros2
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "172.36.0.0/24"

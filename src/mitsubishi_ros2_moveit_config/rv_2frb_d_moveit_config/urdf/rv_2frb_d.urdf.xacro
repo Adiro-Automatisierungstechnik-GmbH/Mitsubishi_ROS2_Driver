@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rv_2frb_d">
+    
+    <xacro:arg name="prefix" default="" />
+    <xacro:arg name="use_sim" default="false" />    
+    <xacro:arg name="robot_ip" default="192.168.0.20" />
+    <xacro:arg name="robot_udp_port" default="10000" />  
+    <xacro:arg name="robot" default="rv_2frb_d" />  
+        
+    <xacro:include filename="$(find mitsubishi_ros2_description)/urdf/rv_2frb_d/rv_2frb_d.urdf.xacro" />
+    <xacro:include filename="$(find rv_2frb_d_moveit_config)/config/rv_2frb_d.ros2_control.xacro" />
+    
+    <!-- Used for fixing robot -->
+    <link name="world"/>
+    <gazebo reference="world">
+        <static>true</static>
+    </gazebo>
+
+    <xacro:rv_2frb_d parent="world" prefix="$(arg prefix)">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:rv_2frb_d>
+       
+    <xacro:rv_2frb_d_ros2_control
+        name="rv_2frb_d_ros_control"
+        robot_ip="$(arg robot_ip)"
+        prefix="$(arg prefix)" 
+        robot_udp_port="$(arg robot_udp_port)"
+        use_sim="$(arg use_sim)" />
+    
+    <xacro:if value="$(arg use_sim)">
+      <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+          <parameters>$(find rv_2frb_d_moveit_config)/config/rv_2frb_d_controllers.yaml</parameters>
+        </plugin>
+      </gazebo>
+    </xacro:if>
+    
+
+</robot>

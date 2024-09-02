@@ -1,0 +1,9 @@
+<library path="mitsubishi_hardware_interface">
+    <class name="mitsubishi_hardware_interface/MitsubishiHardwareInterface"
+            type="mitsubishi_hardware_interface::MitsubishiHardwareInterface"
+            base_class_type="hardware_interface::SystemInterface">
+        <description>
+            Hardware for Mitsubishi joint-space position control.
+        </description>
+    </class>
+</library>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rv_2frb_d">
+
+  <xacro:arg name="prefix" default="" />
+
+  <xacro:include filename="$(find mitsubishi_ros2_description)/urdf/rv_2frb_d/rv_2frb_d.urdf.xacro"/>
+
+  <!-- Used for fixing robot -->
+  <link name="world"/>
+  <gazebo reference="world">
+      <static>true</static>
+  </gazebo>
+
+  <xacro:rv_2frb_d parent="world" prefix="$(arg prefix)">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:rv_2frb_d>
+
+</robot>

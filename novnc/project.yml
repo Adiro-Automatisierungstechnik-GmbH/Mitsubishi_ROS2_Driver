@@ -1,0 +1,8 @@
+# TODO fill out base informations about the project for the UIs
+title: "NoVNC"
+version: 0.1
+author: schwimo
+created: 08-05-2023
+ports: []
+interfacePorts:
+  - 8080/tcp

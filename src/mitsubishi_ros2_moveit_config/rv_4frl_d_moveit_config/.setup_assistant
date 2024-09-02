@@ -1,0 +1,23 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: rv_4frl_d_moveit_config
+    relative_path: urdf/rv_4frl_d.urdf.xacro
+  srdf:
+    relative_path: srdf/rv_4frl_d.srdf
+  package_settings:
+    author_name: Timo Schwarzer
+    author_email: timo@software-byts.de
+    generated_timestamp: 1704263740
+  control_xacro:
+    command:
+      - position
+    state:
+      - position      
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position      

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="rv_4frl_d" params="parent prefix *origin">
+    
+    <material name="housing">
+      <color rgba="0.79216 0.81961 0.93333 1"/>
+    </material>
+
+    <link name="${prefix}rv_4frl_d_base_link">
+      <inertial>
+            <mass value="1"/>
+            <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi}" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_01_BASE.stl" scale="0.001 0.001 0.001"/>          
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0.00000000 ${pi}" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_01_BASE.stl" scale="0.001 0.001 0.001"/>           
+        </geometry>
+      </collision>
+    </link>   
+    
+    <joint name="${prefix}rv_4frl_d_base" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${prefix}rv_4frl_d_base_link"/>
+    </joint>    
+
+    <joint name="${prefix}J1" type="revolute">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}rv_4frl_d_base_link" />
+      <child link="${prefix}link_1" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="${-240*pi/180}" upper="${240*pi/180}"
+        velocity="${420*pi/180}"
+        effort="300.0" />
+    </joint>
+    
+    <link name="${prefix}link_1">
+      <inertial>
+          <mass value="1"/>
+          <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0.0 0.0" />
+        <geometry>          
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_02_SHOULDER.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${pi/2} 0.0 0.0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_02_SHOULDER.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>   
+
+    <joint name="${prefix}J2" type="revolute">
+      <origin xyz="0 0 0.350" rpy="${pi/2} 0 ${pi}" />
+      <parent link="${prefix}link_1" />
+      <child link="${prefix}link_2" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="${-120*pi/180}" upper="${120*pi/180}"
+        velocity="${336*pi/180}" 
+        effort="300.0"/>
+    </joint>   
+
+    <link name="${prefix}link_2">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 -0.350 0 " rpy="0.0 0.0 0.0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_03_NO1ARM.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="0 -0.350 0 " rpy="0.0 0.0 0.0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_03_NO1ARM.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>  
+
+    <joint name="${prefix}J3" type="revolute">
+      <origin xyz="0 0.310 0" rpy="0.0 0.0 ${-pi/2}" />
+      <parent link="${prefix}link_2" />
+      <child link="${prefix}link_3" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="${0*pi/180}" upper="${164*pi/180}"
+        velocity="${250*pi/180}"
+        effort="300.0" />
+    </joint>
+    
+    <link name="${prefix}link_3">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>        
+        <origin xyz="0 ${-0.350-0.310} 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_04_ELBOW.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="0 ${-0.350-0.310} 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_04_ELBOW.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <joint name="${prefix}J4" type="revolute">
+      <origin xyz="0.0 0.050 0.0" rpy="${-pi/2} 0.00000000 0.00000000" />
+      <parent link="${prefix}link_3" />
+      <child link="${prefix}link_4" />
+      <axis xyz="1 0 0" />
+      <limit
+        lower="${-200*pi/180}" upper="${200*pi/180}"
+        velocity="${540*pi/180}"
+        effort="300.0" />
+    </joint>  
+    
+    <link name="${prefix}link_4">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 ${-0.350-0.310-0.050}" rpy="${pi/2} 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_05_NO2ARM.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0498 0 -0.525" rpy="1.57079633 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_05_NO2ARM.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}J5" type="revolute">
+      <origin xyz="-0.335 0.0 0.0" rpy="${pi/2} 0.00000000 0.00000000" />
+      <parent link="${prefix}link_4" />
+      <child link="${prefix}link_5" />
+      <axis xyz="0 0 1" />
+      <limit
+        lower="${-120*pi/180}" upper="${120*pi/180}"
+        velocity="${623*pi/180}"
+        effort="300.0" />
+    </joint>
+
+    <link name="${prefix}link_5">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>
+        <origin xyz="0.335 ${-0.350-0.310-0.050} 0.0 " rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_06_WRIST.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.0498 -0.795 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_06_WRIST.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>    
+
+    <joint name="${prefix}J6" type="revolute">
+      <origin xyz="-0.08 0.0 0.0" rpy="0.0 0.0 0.0" />
+      <parent link="${prefix}link_5" />
+      <child link="${prefix}link_6" />
+      <axis xyz="1 0 0" />
+      <limit
+        lower="${-360*pi/180}" upper="${360*pi/180}"
+        velocity="${720*pi/180}" effort="300.0" />
+    </joint>     
+
+    <link name="${prefix}link_6">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+      <visual>        
+        <origin xyz="${0.335+0.08} ${-0.350-0.310-0.050} 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_07_HAND_FLANGE.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="housing"/>
+      </visual>
+      <collision>
+        <origin xyz="-0.05 -0.05 -0.795" rpy="1.5 0 0" />
+        <geometry>
+          <mesh filename="file://$(find mitsubishi_ros2_description)/meshes/rv_4frl_d/RV-4FRL_07_HAND_FLANGE.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}tool0">
+      <inertial>
+        <mass value="1"/>
+        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}J6-tool0" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="${prefix}link_6"/>
+        <child link="${prefix}tool0"/>
+    </joint>
+    
+  </xacro:macro>
+</robot>
