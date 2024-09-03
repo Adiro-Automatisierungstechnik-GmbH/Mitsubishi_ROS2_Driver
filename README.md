@@ -63,9 +63,9 @@ You can now start to test the robot in the simulation.<br /><br />
 > Make sure you operate the robot in a save and collsion-free environment!
 
 To control your robot directly e.g. with RViz, must to establish a connection to the robot controller.
-First load the program REAL, out of the MELFA_Program folder onto your Robot Controler and start it. 
+First, load the program REAL out of the MELFA_Program folder onto your robot controller. **Change the IP address in line 28** and start the program. 
 The robot will drive in a start position and wait for new input.
-You can now control your robot controller via ROS. You should also see the symbol of a running program on your Teaching Box, e.g. the R56TB: <br /><br />
+You are now able to control your robot controller via ROS. You should also see the symbol of a running program on your Teaching Box, e.g. the R56TB: <br /><br />
 
 ![Docker-TeachingBox](https://github.com/Adiro-Automatisierungstechnik-GmbH/Mitsubishi_ROS2_Driver/assets/168413005/a34bd8f0-bdc7-43c5-a15d-2d6c685a2e7b)
 
