@@ -2,7 +2,7 @@
 Integration of ROS2 for Mitsubishi 6DOF robots, supporting Melfa RV-FR Series robots.<br />
 This driver is provided by [Adiro.com](https://www.adiro.com/en/) in collaboration with [Software-byTS](https://www.software-byts.de/)<br />
 <p align="center">
-<img src="https://github.com/user-attachments/assets/619bedc0-90f8-4aa6-8775-58d68f43b7cd" width="600" height="283">
+<img src="https://github.com/user-attachments/assets/619bedc0-90f8-4aa6-8775-58d68f43b7cd" width="600">
 </p>
 
 > [!IMPORTANT]
