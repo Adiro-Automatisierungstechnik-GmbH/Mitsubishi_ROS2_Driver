@@ -134,7 +134,7 @@
       <material name="housing"/>
     </visual>
     <collision>
-      <origin rpy="1.57079633 0 0" xyz="-0.0498 0 -0.525"/>
+      <origin rpy="1.5707963267948966 0 0" xyz="0 0 -0.71"/>
       <geometry>
         <mesh filename="file:///root/ros2_ws/install/mitsubishi_ros2_description/share/mitsubishi_ros2_description/meshes/rv_4frl_d/RV-4FRL_05_NO2ARM.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -160,7 +160,7 @@
       <material name="housing"/>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="-0.0498 -0.795 0"/>
+      <origin rpy="0 0 0" xyz="0.335 -0.71 0.0"/>
       <geometry>
         <mesh filename="file:///root/ros2_ws/install/mitsubishi_ros2_description/share/mitsubishi_ros2_description/meshes/rv_4frl_d/RV-4FRL_06_WRIST.stl" scale="0.001 0.001 0.001"/>
       </geometry>
@@ -186,7 +186,7 @@
       <material name="housing"/>
     </visual>
     <collision>
-      <origin rpy="1.5 0 0" xyz="-0.05 -0.05 -0.795"/>
+      <origin rpy="0 0 0" xyz="0.41500000000000004 -0.71 0"/>
       <geometry>
         <mesh filename="file:///root/ros2_ws/install/mitsubishi_ros2_description/share/mitsubishi_ros2_description/meshes/rv_4frl_d/RV-4FRL_07_HAND_FLANGE.stl" scale="0.001 0.001 0.001"/>
       </geometry>
